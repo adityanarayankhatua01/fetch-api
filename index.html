@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      /* Add your CSS styles here */
+      .card {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+      }
+    </style>
+    <title>API Data Display</title>
+  </head>
+  <body>
+    <div id="dataContainer">
+      <!-- Data will be displayed here -->
+    </div>
+    <script>
+      // Step 1: Fetch data from the API
+      fetch("your-api-url-here")
+        .then((response) => response.json())
+        .then((data) => {
+          // Step 2: Process data and create HTML elements
+          const dataContainer = document.getElementById("dataContainer");
+
+          data.forEach((item) => {
+            const card = document.createElement("div");
+            card.className = "card";
+
+            const title = document.createElement("h2");
+            title.textContent = item.title;
+
+            const description = document.createElement("p");
+            description.textContent = item.description;
+
+            card.appendChild(title);
+            card.appendChild(description);
+
+            // Step 3: Append created elements to the container
+            dataContainer.appendChild(card);
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    </script>
+  </body>
+</html>
